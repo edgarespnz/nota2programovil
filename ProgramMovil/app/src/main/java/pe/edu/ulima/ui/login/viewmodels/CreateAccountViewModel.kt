@@ -11,6 +11,7 @@ import pe.edu.ulima.activities.AppActivity
 import pe.edu.ulima.services.UserService
 
 class CreateAccountViewModel: ViewModel() {
+
     private val _usuario = MutableLiveData<String>("")
     var usuario: LiveData<String> = _usuario
     fun updateUsuario(it: String){
@@ -41,20 +42,26 @@ class CreateAccountViewModel: ViewModel() {
         _mensaje.postValue(it)
     }
 
-    fun validar(context: Context){
+    fun validar(context: Context) {
         val id: Int = UserService.validate(usuario.value!!, contrasenia.value!!)
-        if(id == 0){
-            updateMensaje("Error: Usuario y contraseña no válidos")
-        }else{
-            updateMensaje("Todo OK")
+        if (usuario.value.isNullOrEmpty() || correo.value.isNullOrEmpty() || contrasenia.value.isNullOrEmpty() || contrasenia2.value.isNullOrEmpty()) {
+            updateMensaje("Error: Algún campo está vacío")
+        }
+        else if(id != 0){
+            updateMensaje("Error: El usuario o correo ya existe")
+        }
+        else if(contrasenia.value != contrasenia2.value){
+            updateMensaje("Error: Las contraseñas son distintas")
+        }
+        else {
+            updateMensaje("Cuenta Creada!")
             Handler().postDelayed({
                 updateMensaje("")
                 val appActivity =  Intent(context, AppActivity::class.java)
                 appActivity.putExtra("user_id", id)
-                context.startActivity(
-                    appActivity
-                )
+                context.startActivity(appActivity)
             }, 1000)
         }
     }
+
 }

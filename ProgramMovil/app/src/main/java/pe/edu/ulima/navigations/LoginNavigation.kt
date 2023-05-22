@@ -9,9 +9,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import pe.edu.ulima.ui.login.uis.CreateAccountScreen
 import pe.edu.ulima.ui.login.uis.LoginScreen
 import pe.edu.ulima.ui.login.uis.ResetPasswordScreen
 import pe.edu.ulima.ui.login.uis.SplashScreen
+import pe.edu.ulima.ui.login.viewmodels.CreateAccountViewModel
 import pe.edu.ulima.ui.login.viewmodels.LoginViewModel
 import pe.edu.ulima.ui.login.viewmodels.ResetPasswordScreenViewModel
 
@@ -19,6 +21,7 @@ import pe.edu.ulima.ui.login.viewmodels.ResetPasswordScreenViewModel
 fun LoginNavigation(
     loginScreenViewModel: LoginViewModel,
     resetPasswordScreenViewModel: ResetPasswordScreenViewModel,
+    createAccountViewModel: CreateAccountViewModel
 ){
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -51,6 +54,9 @@ fun LoginNavigation(
                     loginScreenViewModel,
                     goToResetPasswordScreen = {
                         navController.navigate("/reset_password")
+                    },
+                    goToCreateAccountScreen = {
+                        navController.navigate("/createAccount")
                     }
                 )
             }else{
@@ -59,6 +65,9 @@ fun LoginNavigation(
                     loginScreenViewModel,
                     goToResetPasswordScreen = {
                         navController.navigate("/reset_password")
+                    },
+                    goToCreateAccountScreen = {
+                        navController.navigate("/createAccount")
                     }
                 )
             }
@@ -71,6 +80,9 @@ fun LoginNavigation(
                 loginScreenViewModel,
                 goToResetPasswordScreen = {
                     navController.navigate("/reset_password")
+                },
+                goToCreateAccountScreen = {
+                    navController.navigate("/createAccount")
                 }
             )
         }
@@ -92,6 +104,21 @@ fun LoginNavigation(
                     Log.d("pe.edu.ulima", resetPasswordScreenViewModel.correo.value.toString())
                     val parameter = resetPasswordScreenViewModel.correo.value.toString()
                     navController.navigate("/login/$parameter")
+                }
+            )
+        }
+
+        composable(
+            route = "/createAccount",
+            arguments = listOf()
+        ){ entry ->
+            CreateAccountScreen(
+                createAccountViewModel,
+                goToResetPasswordScreen = {
+                    navController.navigate("/reset_password")
+                },
+                goToCreateAccountScreen = {
+                    navController.navigate("/createAccount")
                 }
             )
         }

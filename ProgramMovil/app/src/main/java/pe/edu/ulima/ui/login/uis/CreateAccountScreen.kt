@@ -36,13 +36,15 @@ import pe.edu.ulima.ui.theme.Orange200
 public fun CreateAccountScreenPreview(){
     CreateAccountScreen(
         CreateAccountViewModel(),
-        goToResetPasswordScreen = {}
+        goToResetPasswordScreen = {},
+        goToCreateAccountScreen = {}
     )
 }
 @Composable
 public fun CreateAccountScreen(
     viewModel: CreateAccountViewModel,
-    goToResetPasswordScreen: () -> Unit
+    goToResetPasswordScreen: () -> Unit,
+    goToCreateAccountScreen: () -> Unit
 ){
     val context = LocalContext.current
     // viewmodel
@@ -125,11 +127,11 @@ public fun CreateAccountScreen(
                 )
             )
 
-            // txtUser
+            // txtCorreo
             TextField(
-                value = usuario,
+                value = correo,
                 onValueChange = {
-                    viewModel.updateUsuario(it)
+                    viewModel.updateCorreo(it)
                 },
                 modifier = Modifier.fillMaxWidth(),
                 label = {

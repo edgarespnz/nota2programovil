@@ -46,6 +46,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.min
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberImagePainter
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
@@ -58,7 +59,10 @@ import okhttp3.Request
 import okhttp3.Response
 import pe.edu.ulima.ui.RandomImageItem
 import pe.edu.ulima.ui.RandomImage
-
+import pe.edu.ulima.ui.app.viewmodels.InstagramCloneViewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import pe.edu.ulima.ui.app.viewmodels.PokemonViewModel
 
 import pe.edu.ulima.ui.theme.Orange200
 import java.io.IOException
@@ -67,11 +71,21 @@ import kotlin.math.min
 @Preview
 @Composable
 public fun InstagramCloneScreenPreview(){
-    InstagramCloneScreen()
+    InstagramCloneScreen(
+        goToEditProfileScreen = {},
+        InstagramCloneViewModel(),
+        rememberNavController(),
+        0
+    )
 }
 
 @Composable
-public fun InstagramCloneScreen(){
+public fun InstagramCloneScreen(
+    goToEditProfileScreen: () -> Unit,
+    viewModel: InstagramCloneViewModel,
+    navController: NavHostController,
+    profileId: Int
+){
 
     //arreglo mutable para almacenar el fetch de imagenes
     val imagesList = remember { mutableStateListOf<String>() }
@@ -220,7 +234,7 @@ public fun InstagramCloneScreen(){
                 Button(
                     colors = ButtonDefaults.buttonColors(backgroundColor = Orange200),
                     onClick = {
-                        println("Presiono editar perfil")
+                        goToEditProfileScreen()
                     }
                 ){
                     Text("Editar Perfil",

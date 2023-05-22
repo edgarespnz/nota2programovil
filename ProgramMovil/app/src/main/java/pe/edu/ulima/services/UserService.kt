@@ -27,6 +27,47 @@ class UserService {
             return id
         }
 
+
+        fun validateUsername (usuario: String): Int {
+            var id = 0
+            for (u in usuarios){
+                if(u.usuario == usuario){
+                    id = u.id
+                }
+            }
+            return id
+        }
+
+        fun validateUsernameAndEmail(usuario: String, email: String): Int {
+            var id = 0
+            for(u in usuarios){
+                if(u.usuario == usuario && u.correo == email){
+                    id = u.id
+                }
+            }
+            return id
+        }
+
+        fun validateEmail (email: String): Int {
+            var id = 0
+            for (u in usuarios){
+                if(u.correo == email){
+                    id = u.id
+                }
+            }
+            return id
+        }
+
+        fun validatePassword (contrasenia: String): Int {
+            var id = 0
+            for (u in usuarios){
+                if(u.contrasenia == contrasenia){
+                    id = u.id
+                }
+            }
+            return id
+        }
+
         fun fetchOne(id: Int): Usuario{
             var usuario = Usuario()
             for(u in usuarios){

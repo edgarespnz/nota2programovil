@@ -16,6 +16,7 @@ import pe.edu.ulima.navigations.LoginNavigation
 import pe.edu.ulima.ui.app.uis.PokemonScreen
 import pe.edu.ulima.ui.app.viewmodels.PokemonDetailViewModel
 import pe.edu.ulima.ui.app.viewmodels.PokemonViewModel
+import pe.edu.ulima.ui.login.viewmodels.CreateAccountViewModel
 import pe.edu.ulima.ui.login.viewmodels.LoginViewModel
 import pe.edu.ulima.ui.login.viewmodels.ResetPasswordScreenViewModel
 import pe.edu.ulima.ui.theme.*
@@ -27,6 +28,7 @@ class MainActivity : ComponentActivity() {
         // login navigation
         var loginScreenViewModel = LoginViewModel()
         var resetPasswordScreenViewModel = ResetPasswordScreenViewModel()
+        var createAccountViewModel = CreateAccountViewModel()
         // screen navigation
         setContent {
             ProgramMovilTheme {
@@ -38,6 +40,7 @@ class MainActivity : ComponentActivity() {
                     //SplashScreen()
                     LoginNavigation(
                         loginScreenViewModel = loginScreenViewModel,
+                        createAccountViewModel = createAccountViewModel,
                         resetPasswordScreenViewModel = resetPasswordScreenViewModel,
                     )
                     //PokemonDetailScreen(viewModel = PokemonDetailViewModel())

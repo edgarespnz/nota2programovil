@@ -18,11 +18,9 @@ import pe.edu.ulima.ui.app.viewmodels.*
 class AppActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var pokemonScreenModel = PokemonViewModel()
-        var pokemonDetailViewModel = PokemonDetailViewModel()
-        var profileViewModel = ProfileViewModel()
-        var seguidorViewModel = SeguidorViewModel()
-        var seguidosViewModel = SeguidosViewModel()
+
+        var instagramCloneViewModel = InstagramCloneViewModel()
+
         setContent {
             ProgramMovilTheme {
                 // A surface container using the 'background' color from the theme
@@ -31,11 +29,7 @@ class AppActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     AppNavigation(
-                        pokemonScreenModel = pokemonScreenModel,
-                        pokemonDetailViewModel = pokemonDetailViewModel,
-                        profileViewModel = profileViewModel,
-                        seguidoresViewModel = seguidorViewModel,
-                        seguidosViewModel = seguidosViewModel
+                        instagramCloneViewModel = InstagramCloneViewModel()
                     )
                 }
             }
